@@ -1,5 +1,4 @@
 name(dirtree).
-title('load XML of directory content').
-version('1.0.0').
+title('Load XML of directory content.').
+version('1.0.1').
 author('Carlo Capelli', 'cc.carlo.cap@gmail.com').
-
