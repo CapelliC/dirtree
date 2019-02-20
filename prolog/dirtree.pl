@@ -43,7 +43,7 @@ the GNU General Public License.
     get_ftp_ls_output//1,           % -Ftped:list
     dirzap/1,                       % +Root
     capture_attrs/3,                % +Attr, +Elem, ?Values
-    assign_path/2                   %
+    assign_path/2                   % +NoPath, -WithPath
 ]).
 
 :- use_module(library(xpath)).
