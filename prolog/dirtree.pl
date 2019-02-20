@@ -132,7 +132,9 @@ embed(P, XLines) :-
     file_name_extension(_, X, P),
     extension_to_embed(X),
     setup_call_cleanup(open(P, read, H), fetch_lines(H, Lines), close(H)),
-    maplist([Line,XLine]>>(XLine = element(line, [text = Line], [])), Lines, XLines),
+    maplist([Line,XLine]>>(
+        XLine = element(line, [text = Line], [])
+    ), Lines, XLines),
     !.
 embed(_, []).
 
@@ -179,7 +181,7 @@ counted_extensions_old(Counted) :-
     source_target(_, XML),
     load_xml_file(XML, DOM),
     extensions_from_DOM(DOM, ExtS),
-    maplist([Ext,Count]>>
+    maplist({DOM}/[Ext,Count]>>
        (aggregate_all(count, (
             xpath(DOM, //file(@name), File),
             file_name_extension(_, Ext, File)
