@@ -65,8 +65,8 @@ output.
 :- dynamic extension_to_embed/1.
 :- dynamic source_target/2.
 
-%%  dirtree(+Root, ?Xml) is det.
-%%  dirtree(+Path, +Item, ?Xml) is det.
+%!  dirtree(+Root, ?Xml) is det.
+%!  dirtree(+Path, +Item, ?Xml) is det.
 %
 %   start actual scan (need current path)
 %
@@ -96,8 +96,8 @@ scandir(P, _Dir, D) :-
         dirtree(Q, E, X)
     ), D).
 
-%%  sortree(+T, -S) is det.
-%%  sortree(:P, +T, -S) is det.
+%!  sortree(+T, -S) is det.
+%!  sortree(:P, +T, -S) is det.
 %
 %   sort XML elements by name
 %
@@ -116,7 +116,7 @@ compare_by_attr(A, R, X, Y) :-
     xpath(Y, /self(@A), Vy),
     ( Vx @< Vy -> R = < ; R = > ).
 
-%%  extension_embedding_enable is det.
+%!  extension_embedding_enable is det.
 %
 %   call before dirtree to load source text lines (not parsed)
 %
@@ -149,7 +149,7 @@ fetch_lines(H, L) :-
         L = [Q|T]
     ).
 
-%%  extensions_from_saved(-Result) is det.
+%!  extensions_from_saved(-Result) is det.
 %
 %   search each DOM branch and extract extension
 %
@@ -164,7 +164,7 @@ extensions_from_DOM(DOM, Exts) :-
         file_name_extension(_, X, File)
     ), Exts).
 
-%%  counted_extensions(Counted) is det.
+%!  counted_extensions(Counted) is det.
 %
 %       get all extensions and count each file
 %
@@ -189,7 +189,7 @@ counted_extensions_old(Counted) :-
         Count = (Ext = C)
        ), ExtS, Counted).
 
-%%  get_ftp_ls_output(Stdout, Ftped) is det.
+%!  get_ftp_ls_output(Stdout, Ftped) is det.
 %
 %   parse output of ftp command 'ls ...'
 %
@@ -249,7 +249,7 @@ timestamp(date(YYYY,MO,DD,HH,MM,SS,0,-,-)) -->
     ).
 
 
-%%  dirzap(+X:atom) is det.
+%!  dirzap(+X:atom) is det.
 %
 %   remove directory
 %
@@ -261,7 +261,7 @@ dirzap(X) :-
     reverse(Dirs, RDirs),
     maplist(delete_directory, RDirs).
 
-%%  capture_attrs(+Attr,+Elem,?Values) is det.
+%!  capture_attrs(+Attr,+Elem,?Values) is det.
 %
 %   get all Attr=Value from attrs
 %
@@ -270,7 +270,7 @@ capture_attrs(Attr, element(_, Attrs, Tree), [Value|List]) :-
     maplist(capture_attrs(Attr), Tree, SList),
     flatten(SList, List).
 
-%%  assign_path(+NoPath, -WithPath) is det.
+%!  assign_path(+NoPath, -WithPath) is det.
 %
 %   assign to dirtree path attribute from root
 %
