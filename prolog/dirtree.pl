@@ -85,7 +85,7 @@ dirtree(P, File, element(file, A, Q)) :-
     (   catch((exists_file(P), size_file(P, S)), E, (print_message(error, E), S = 0))
     ->  A = [name = File, size = S, path = P],
         embed(P, Q)
-    ;   A = [name = File, size = 0, path = P]
+    ;   A = [name = File, size = 0, path = P], Q = []
     ).
 
 scandir(P, _Dir, D) :-
